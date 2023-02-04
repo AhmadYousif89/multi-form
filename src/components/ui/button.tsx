@@ -1,9 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
-import { Steps, useSubscription } from '../../context/subscription';
+import { useSubscription } from '../../context/subscription';
 
 import styles from './styles/button.module.css';
 
 type BtnVariant = 'next_btn' | 'prev_btn' | 'nav_btn' | 'confirm_btn';
+type Steps = 'UserInfo' | 'SelectPlan' | 'SelectAddons' | 'Confirmation' | 'Summary';
 type ButtonProps = {
   id?: Steps;
   pressed?: boolean;

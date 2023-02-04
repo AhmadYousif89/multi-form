@@ -1,4 +1,5 @@
 import { FC, useState, ChangeEvent, HTMLInputTypeAttribute } from 'react';
+
 import { InputTypes, useSubscription } from '../../context/subscription';
 
 import styles from './styles/input.module.css';

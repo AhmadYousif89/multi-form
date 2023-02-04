@@ -4,9 +4,7 @@ import { useSubscription } from '../../context/subscription';
 
 import styles from './styles/confirmation.module.css';
 
-type ConfirmationProps = {};
-
-export const Confirmation: FC<ConfirmationProps> = () => {
+export const Confirmation: FC = () => {
   const {
     state: { planInfo, billing, addons },
     billingSwitcher,

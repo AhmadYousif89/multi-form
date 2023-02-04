@@ -8,12 +8,6 @@ import {
   SetStateAction,
 } from 'react';
 
-export type Steps =
-  | 'UserInfo'
-  | 'SelectPlan'
-  | 'SelectAddons'
-  | 'Confirmation'
-  | 'Summary';
 export type UserInfo = Record<InputTypes, string>;
 export type UserInfoValidity = Record<InputTypes, boolean>;
 export type InputTypes = 'name' | 'email' | 'phoneNumber';

@@ -1,10 +1,11 @@
+import { FC } from 'react';
+
 import { Button } from '../ui';
-
 import { useSubscription } from '../../context/subscription';
-import styles from './styles/top-nav.module.css';
 import topNavImg from '../../assets/images/bg-sidebar-mobile.svg';
+import styles from './styles/top-nav.module.css';
 
-export const TopNavigation = () => {
+export const TopNavigation: FC = () => {
   const {
     state: { stepNumber, userInfo, planInfo, isCompleted },
     setFormStepNumber,

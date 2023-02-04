@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   Confirmation,
   PersonalInfo,
@@ -9,7 +10,7 @@ import { useSubscription } from '../../context/subscription';
 
 import styles from './styles/display-steps.module.css';
 
-export const DisplayStep = () => {
+export const DisplayStep: FC = () => {
   const {
     state: { stepNumber },
   } = useSubscription();

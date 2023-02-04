@@ -3,9 +3,7 @@ import { Card, Input } from '../ui';
 
 import styles from './styles/personal-info.module.css';
 
-type PersonalInfoProps = {};
-
-export const PersonalInfo: FC<PersonalInfoProps> = () => {
+export const PersonalInfo: FC = () => {
   return (
     <Card>
       <section className={'general__container'}>

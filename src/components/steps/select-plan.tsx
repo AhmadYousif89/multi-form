@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { Card, PlanSwitcher, Plans } from '../ui';
 
+import { Card, PlanSwitcher, Plans } from '../ui';
+import { useSubscription } from '../../context/subscription';
+
+import styles from './styles/select-plan.module.css';
 import proIcon from '../../assets/icons/icon-pro.svg';
 import arcadeIcon from '../../assets/icons/icon-arcade.svg';
 import advancedIcon from '../../assets/icons/icon-advanced.svg';
-
-import styles from './styles/select-plan.module.css';
-import { useSubscription } from '../../context/subscription';
 
 export const SelectPlan: FC = () => {
   const {

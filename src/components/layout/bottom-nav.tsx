@@ -4,9 +4,7 @@ import { Button } from '../ui';
 import { useSubscription } from '../../context/subscription';
 import styles from './styles/footer.module.css';
 
-type FooterProps = {};
-
-export const BottomNavigation: FC<FooterProps> = ({}) => {
+export const BottomNavigation: FC = () => {
   const {
     state: { stepNumber, userInfo, planInfo, isCompleted },
     setFormStepNumber,

@@ -1,13 +1,11 @@
 import { FC } from 'react';
+
 import { Card } from '../ui';
-
 import { useSubscription } from '../../context/subscription';
-import styles from './styles/summary.module.css';
 import confirmIcon from '../../assets/icons/icon-thank-you.svg';
+import styles from './styles/summary.module.css';
 
-type SummaryProps = {};
-
-export const Summary: FC<SummaryProps> = () => {
+export const Summary: FC = () => {
   const { resetSubscription } = useSubscription();
 
   return (
