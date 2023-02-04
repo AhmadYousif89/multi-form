@@ -16,7 +16,7 @@
   margin-top: 2rem;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 431px) {
   .container {
     display: none;
   }
