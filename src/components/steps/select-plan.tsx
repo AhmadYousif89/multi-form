@@ -1,0 +1,48 @@
+import { FC } from 'react';
+import { Card, PlanSwitcher, Plans } from '../ui';
+
+import proIcon from '../../assets/icons/icon-pro.svg';
+import arcadeIcon from '../../assets/icons/icon-arcade.svg';
+import advancedIcon from '../../assets/icons/icon-advanced.svg';
+
+import styles from './styles/select-plan.module.css';
+import { useSubscription } from '../../context/subscription';
+
+export const SelectPlan: FC = () => {
+  const {
+    state: { billing },
+  } = useSubscription();
+
+  return (
+    <Card>
+      <section className={'general__container'}>
+        <div className={'header'}>
+          <h2>Select your plan</h2>
+          <p>You have the option of monthly or yearly billing.</p>
+        </div>
+
+        <div className={styles.plan__container}>
+          <Plans
+            plan={'Arcade'}
+            icon={arcadeIcon}
+            price={billing === 'yearly' ? '90' : '9'}
+          />
+          <Plans
+            plan={'Advanced'}
+            icon={advancedIcon}
+            price={billing === 'yearly' ? '120' : '12'}
+          />
+          <Plans
+            plan={'Pro'}
+            icon={proIcon}
+            price={billing === 'yearly' ? '150' : '15'}
+          />
+        </div>
+
+        <div className={styles.switcher__container}>
+          <PlanSwitcher />
+        </div>
+      </section>
+    </Card>
+  );
+};

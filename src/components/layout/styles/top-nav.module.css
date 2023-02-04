@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  position: relative;
+}
+
+.container figure {
+  position: fixed;
+  z-index: -1;
+}
+
+.container ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 376px) {
+  .container {
+    display: none;
+  }
+}

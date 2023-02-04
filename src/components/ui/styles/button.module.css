@@ -1,0 +1,70 @@
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  text-transform: capitalize;
+  font-weight: 700;
+  text-align: center;
+}
+
+.button.nav__btn {
+  color: var(--Magnolia);
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--Light-gray);
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+.button.nav__btn:hover {
+  border-color: var(--White);
+}
+
+.button.nav__btn[aria-pressed='true'] {
+  background-color: var(--Light-blue);
+  color: var(--Marine-blue);
+  border: 0;
+}
+
+.button.prev__btn {
+  color: var(--Cool-gray);
+  padding: 0.85rem 1.15rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+.button.prev__btn:hover {
+  color: var(--Dark-gray);
+}
+
+.button.next__btn,
+.button.confirm__btn {
+  margin-left: auto;
+  padding: 0.85rem 1.15rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.button.next__btn {
+  color: var(--Light-gray);
+  background-color: var(--Marine-blue);
+}
+
+.button.confirm__btn {
+  color: var(--Magnolia);
+  background-color: var(--Purplish-blue);
+}
+
+.button[aria-disabled='true'] {
+  cursor: not-allowed;
+  background-color: var(--Cool-gray);
+}
+.button[aria-disabled='false'] {
+  color: var(--White);
+}
+.button[aria-disabled='true']:is(:focus, :focus-visible) {
+  outline: 2px solid var(--Strawberry-red);
+}
+.button[aria-disabled='false']:is(:focus, :focus-visible) {
+  outline: 2px solid var(--Pastel-blue);
+}

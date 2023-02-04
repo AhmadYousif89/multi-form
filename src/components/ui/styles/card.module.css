@@ -1,0 +1,25 @@
+.container {
+  width: 80%;
+  padding: 1rem;
+  min-height: fit-content;
+  margin-inline: auto;
+  border-radius: 1rem;
+  background-color: var(--White);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+
+  animation: slide-in 500ms ease-out forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 0;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 2.2rem;
+  }
+}
