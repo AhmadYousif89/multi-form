@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import { Button } from '../ui';
 import { useSubscription } from '../../context/subscription';
@@ -6,7 +6,7 @@ import styles from './styles/footer.module.css';
 
 export const BottomNavigation: FC = () => {
   const {
-    state: { stepNumber, userInfo, planInfo, isCompleted },
+    state: { stepNumber, userInfo, planInfo, addons, isCompleted },
     setFormStepNumber,
   } = useSubscription();
 
@@ -14,11 +14,18 @@ export const BottomNavigation: FC = () => {
     Boolean,
   );
 
-  const nextStep = () =>
-    setFormStepNumber(pvStepNum => (pvStepNum === 5 ? pvStepNum : pvStepNum + 1));
+  const submitSubscriptionData = () => {
+    const sub_details = { userInfo, planInfo, addons };
+    console.log(sub_details);
+  };
 
-  const prevStep = () =>
-    setFormStepNumber(pvStepNum => (pvStepNum === 1 ? pvStepNum : pvStepNum - 1));
+  useEffect(() => {
+    if (isCompleted) submitSubscriptionData();
+  }, [isCompleted]);
+
+  const nextStep = () => setFormStepNumber(pvStepNum => pvStepNum + 1);
+
+  const prevStep = () => setFormStepNumber(pvStepNum => pvStepNum - 1);
 
   const isDisabled =
     (stepNumber === 1 && !userInputIsValid) || (stepNumber === 2 && !planInfo.type);

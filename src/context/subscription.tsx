@@ -17,9 +17,7 @@ export type PlanTypes = 'Arcade' | 'Advanced' | 'Pro' | '';
 type Plan = { type: PlanTypes; price: number };
 
 export type AddonTypes = 'Online service' | 'Large storage' | 'Customizable profile';
-type Addon =
-  | { type: 'Online service'; price: number }
-  | { type: 'Large storage' | 'Customizable profile'; price: number };
+type Addon = { type: AddonTypes; price: number };
 
 type InitState = {
   planInfo: Plan;

@@ -4,10 +4,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 1rem;
+  margin-inline: auto;
   padding-block: 3rem;
-  height: 100%;
   max-width: 25rem;
+  gap: 1rem;
 }
 
 .container p {
@@ -34,8 +34,8 @@
   color: var(--Light-gray);
   background-color: transparent;
   outline: 2px solid var(--Light-gray);
-  cursor: pointer;
   transition: outline 200ms;
+  cursor: pointer;
 }
 
 .reset:hover {

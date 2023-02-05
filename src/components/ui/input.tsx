@@ -91,10 +91,10 @@ export const Input: FC<InputProps> = ({ id, type, label, placeholder }) => {
         id={id}
         name={id}
         type={type}
-        defaultValue={inputDefaultValue}
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
         placeholder={placeholder}
+        defaultValue={inputDefaultValue}
         className={`${styles.input} ${styleInputOnError}`}
       />
     </fieldset>
