@@ -23,10 +23,10 @@ export const PersonalInfo: FC = () => {
           />
 
           <Input
-            id="phoneNumber"
             type="text"
+            id="phoneNumber"
             label="Phone Number"
-            placeholder="e.g. (+1) 234 567 890"
+            placeholder="e.g. +01 01234567890"
           />
         </form>
       </section>

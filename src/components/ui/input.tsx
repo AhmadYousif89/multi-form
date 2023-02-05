@@ -31,7 +31,8 @@ export const Input: FC<InputProps> = ({ id, type, label, placeholder }) => {
   /**
    * some valid paterns : +1 234 567 8900 | +01 234 56 78 89 00 | +012345678900
    */
-  const PHONE_REGEX = /^\+\d{1,2}\s?\d{3,}\s?\d{2,}\s?\d{2,}\s?\d{2,}\s?\d{2,}$/;
+  const PHONE_REGEX =
+    /^\+(?=\d+[1-9]|[1-9]\d)(\d{1,3})\s?\d{3,}\s?\d{2,}\s?\d{2,}\s?\d{2,}\s?\d{2,}$/;
 
   const validateAndSubmit = (type: InputTypes, value: string) => {
     setIsTouched(true);
