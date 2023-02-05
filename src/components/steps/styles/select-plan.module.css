@@ -4,7 +4,7 @@
   gap: 1rem;
 }
 
-@media screen and (width > 1399px) {
+@media screen and (width > 1099px) {
   .plan__container {
     flex-direction: row;
     justify-content: space-between;

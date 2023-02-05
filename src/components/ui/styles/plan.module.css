@@ -34,7 +34,7 @@
   font-size: 0.85rem;
 }
 
-@media screen and (width > 1399px) {
+@media screen and (width > 1099px) {
   .container {
     gap: 2rem;
     width: 10rem;

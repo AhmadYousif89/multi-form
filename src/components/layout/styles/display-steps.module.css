@@ -4,7 +4,7 @@
   min-height: 100vh;
 }
 
-@media screen and (width > 1399px) {
+@media screen and (width > 1099px) {
   .display__wrapper {
     min-height: auto;
     margin: 0 auto;

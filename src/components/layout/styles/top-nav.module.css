@@ -13,7 +13,7 @@
   gap: 1rem;
 }
 
-@media screen and (width > 431px) {
+@media screen and (width >= 431px) {
   .container {
     display: none;
   }

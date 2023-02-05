@@ -20,13 +20,13 @@
   }
 }
 
-@media screen and (width > 430px) and (width < 1400px) {
+@media screen and (width > 430px) and (width <= 1099px) {
   .container {
     display: none;
   }
 }
 
-@media screen and (width > 1399px) {
+@media screen and (width > 1099px) {
   .container {
     padding: 0;
     width: auto;

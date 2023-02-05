@@ -1,9 +1,9 @@
-@media screen and (width < 1400px) {
+@media screen and (width <= 1099px) {
   .container {
     display: none;
   }
 }
-@media screen and (width > 1399px) {
+@media screen and (width > 1099px) {
   .container {
     position: relative;
     display: flex;
