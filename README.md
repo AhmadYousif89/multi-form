@@ -53,9 +53,9 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
 
 ##### Step 1 : Personal Info
 
-![default state](/public/screenshots/descktop/1.png)
-![validating state](/public/screenshots/descktop/2.png)
-![all valid state](/public/screenshots/descktop/3.png)
+![default state](/public/screenshots/desktop/1.png)
+![validating state](/public/screenshots/desktop/2.png)
+![all valid state](/public/screenshots/desktop/3.png)
 
 ##### Step 2 : Select Plan
 
