@@ -1,76 +1,36 @@
 import { FC } from 'react';
+
 import { Card } from '../ui';
 import { useSubscription } from '../../context/subscription';
-
+import confirmIcon from '../../assets/icons/icon-thank-you.svg';
 import styles from './styles/confirmation.module.css';
 
 export const Confirmation: FC = () => {
-  const {
-    state: { planInfo, billing, addons },
-    billingSwitcher,
-  } = useSubscription();
-
-  const planPrice = planInfo.price;
-  const addonsPrice = addons.map(addon => addon.price).reduce((a, b) => a + b, 0);
-
-  const totalSubscription = planPrice + addonsPrice;
-
-  const additionalAddons =
-    addons.length > 0 ? (
-      addons.map(addon => (
-        <div key={addon.type} className={styles.addon}>
-          <span>{addon.type}</span>
-          <span className={styles.addon__value}>
-            +${addon.price}/{billing === 'monthly' ? 'mo' : 'yr'}
-          </span>
-        </div>
-      ))
-    ) : (
-      <p>no additional addons</p>
-    );
+  const { resetSubscription } = useSubscription();
 
   return (
     <Card>
-      <section className={`${styles.container} general__container`}>
-        <div className={`${styles.header} header`}>
-          <h2>Finishing up</h2>
-          <p>Double-check everything looks OK before confirming.</p>
-        </div>
+      <section className={styles.container}>
+        <figure>
+          <img src={confirmIcon} alt="thank you icon" width={60} />
+        </figure>
 
-        <div className={styles.details}>
-          <div className={styles.plan__detials}>
-            <div>
-              <h4>
-                {planInfo.type} ({billing})
-              </h4>
-              <button title="change billing cycle" onClick={billingSwitcher}>
-                Change
-              </button>
-            </div>
-            <p className={styles.billing__value}>
-              ${planInfo.price}/{billing === 'monthly' ? 'mo' : 'yr'}
-            </p>
-          </div>
+        <h2>Thank you!</h2>
 
-          <div className={styles.addons__details}>
-            {addons.length > 0 && <p>additional addons</p>}
-            {additionalAddons}
-          </div>
-
-          {billing === 'yearly' && (
-            <div className={styles.gifts}>
-              <p>gifts</p>
-              <span>2 months free</span>
-            </div>
-          )}
-        </div>
-
-        <div className={styles.total}>
-          <span>Total (per {billing === 'monthly' ? 'month' : 'year'})</span>
-          <span className={styles.total__value}>
-            +${totalSubscription}/{billing === 'monthly' ? 'mo' : 'yr'}
+        <p>
+          <span>
+            Thank you for confirming your subscription! We hope you had fun using our
+            platform. If you ever need support, please feel free to email us at
           </span>
-        </div>
+          <a href="mailto:support@loremgaming.com">support@loremgaming.com</a>
+        </p>
+
+        <button
+          title="close form"
+          onClick={() => resetSubscription()}
+          className={styles.reset}>
+          <span>&times;</span>
+        </button>
       </section>
     </Card>
   );

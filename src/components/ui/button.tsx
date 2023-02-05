@@ -4,7 +4,7 @@ import { useSubscription } from '../../context/subscription';
 import styles from './styles/button.module.css';
 
 type BtnVariant = 'next_btn' | 'prev_btn' | 'nav_btn' | 'confirm_btn';
-type Steps = 'UserInfo' | 'SelectPlan' | 'SelectAddons' | 'Confirmation' | 'Summary';
+type Steps = 'UserInfo' | 'SelectPlan' | 'SelectAddons' | 'Summary' | 'Confirmation';
 type ButtonProps = {
   id?: Steps;
   pressed?: boolean;
@@ -22,7 +22,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   disabled,
 }) => {
   const {
-    state: { stepNumber },
+    state: { stepNumber, isCompleted },
     setFormIsCompleted,
     setFormStepNumber,
   } = useSubscription();
@@ -32,66 +32,45 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
     setFormIsCompleted(true);
   };
 
-  const classes =
-    variant === 'next_btn'
-      ? styles.next__btn
-      : variant === 'prev_btn'
-      ? styles.prev__btn
-      : variant === 'nav_btn'
-      ? styles.nav__btn
-      : variant === 'confirm_btn'
-      ? styles.confirm__btn
-      : '';
+  let classes = '';
+  if (variant === 'nav_btn') classes = styles.nav__btn;
+  if (variant === 'next_btn') classes = styles.next__btn;
+  if (variant === 'prev_btn') classes = styles.prev__btn;
+  if (variant === 'confirm_btn') classes = styles.confirm__btn;
 
-  const navBtnTitle =
-    id === 'UserInfo'
-      ? 'Step 1 personal info'
-      : id === 'SelectPlan'
-      ? 'Step 2 select your plan'
-      : id === 'SelectAddons'
-      ? 'Step 3 choose add-ons'
-      : id === 'Confirmation'
-      ? 'Step 4 finishing up'
-      : '';
+  let navBtnTitle = '';
+  if (id === 'UserInfo') navBtnTitle = 'Step 1 personal info';
+  if (id === 'SelectPlan') navBtnTitle = 'Step 2 select your plan';
+  if (id === 'SelectAddons') navBtnTitle = 'Step 3 choose add-ons';
+  if (id === 'Confirmation') navBtnTitle = 'Step 4 finishing up';
+  if (isCompleted) navBtnTitle = 'disabled';
 
-  const nextBtnTitle =
-    disabled && stepNumber === 1
-      ? 'fill up the form to continue'
-      : disabled && stepNumber === 2
-      ? 'select your plan to continue'
-      : stepNumber === 1
-      ? 'select your plan'
-      : stepNumber === 2
-      ? 'choose your addons'
-      : stepNumber === 3
-      ? 'finish up the form'
-      : '';
+  let nextBtnTitle = '';
+  if (disabled) {
+    if (stepNumber === 1) nextBtnTitle = 'fill up the form to continue';
+    if (stepNumber === 2) nextBtnTitle = 'select your plan to continue';
+  } else {
+    if (stepNumber === 1) nextBtnTitle = 'select your plan';
+    if (stepNumber === 2) nextBtnTitle = 'choose your addons';
+    if (stepNumber === 3) nextBtnTitle = 'finish up the form';
+  }
 
-  const prevBtnTitle =
-    stepNumber === 2
-      ? 'back to personal info'
-      : stepNumber === 3
-      ? 'back to plans'
-      : stepNumber === 4
-      ? 'back to addons'
-      : '';
+  let prevBtnTitle = '';
+  if (stepNumber === 2) prevBtnTitle = 'back to personal info';
+  if (stepNumber === 3) prevBtnTitle = 'back to plans';
+  if (stepNumber === 4) prevBtnTitle = 'back to addons';
+
+  let title = '';
+  if (variant === 'nav_btn') title = navBtnTitle;
+  if (variant === 'prev_btn') title = prevBtnTitle;
+  if (variant === 'next_btn' || variant === 'confirm_btn') title = nextBtnTitle;
 
   return (
     <button
-      disabled={disabled}
+      title={title}
       aria-pressed={pressed}
-      aria-disabled={disabled}
-      title={
-        variant === 'nav_btn'
-          ? navBtnTitle
-          : variant === 'next_btn'
-          ? nextBtnTitle
-          : variant === 'prev_btn'
-          ? prevBtnTitle
-          : variant === 'confirm_btn'
-          ? 'confirm subscription'
-          : ''
-      }
+      disabled={disabled || isCompleted}
+      aria-disabled={disabled || isCompleted}
       onClick={variant === 'confirm_btn' ? onComplete : onClick}
       className={`${styles.button} ${classes}`}>
       {children}

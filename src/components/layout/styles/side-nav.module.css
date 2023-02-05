@@ -1,0 +1,41 @@
+@media screen and (width < 1400px) {
+  .container {
+    display: none;
+  }
+}
+@media screen and (width > 1399px) {
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .container ul {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem;
+    width: 100%;
+  }
+
+  .li {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .li__desc {
+    text-transform: uppercase;
+    cursor: default;
+  }
+  .li__desc p {
+    font-size: 0.7rem;
+    color: var(--Light-gray);
+  }
+  .li__desc h3 {
+    font-size: 1rem;
+    color: var(--White);
+  }
+}

@@ -1,87 +1,55 @@
-.details {
-  padding: 1rem;
-  border-radius: 0.75rem;
-  background-color: var(--Alabaster);
-  margin-bottom: 2rem;
-}
-
-.plan__detials {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--Marine-blue);
-
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--Light-gray);
-  font-weight: 700;
-  text-transform: capitalize;
-}
-
-.plan__detials button {
-  font-size: 0.8rem;
-  color: var(--Cool-gray);
-  text-decoration: underline;
-  cursor: pointer;
-}
-.plan__detials button:focus {
-  color: var(--Pastel-blue);
-  border-bottom-color: var(--Purplish-blue);
-}
-
-.plan__detials p {
-  font-size: 0.8rem;
-}
-
-.addons__details {
+.container {
   display: flex;
   flex-direction: column;
-  margin-block: 1rem;
-}
-
-.addons__details p {
-  font-weight: 700;
-  font-size: 0.8rem;
-  margin-bottom: 0.25rem;
-  color: var(--Cool-gray);
-  text-transform: capitalize;
-}
-
-.addon {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  color: var(--Cool-gray);
-  font-size: 0.9rem;
+  text-align: center;
+  gap: 1rem;
+  padding-block: 3rem;
+  height: 100%;
+  max-width: 25rem;
 }
 
-.addon__value {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--Marine-blue);
-}
-
-.gifts {
-  font-size: 0.8rem;
-  padding-top: 1rem;
-  color: var(--Cool-gray);
-  border-top: 1px solid var(--Light-gray);
-  text-transform: capitalize;
-}
-
-.gifts p {
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.total {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.75rem;
+.container p {
   color: var(--Cool-gray);
 }
 
-.total__value {
-  font-weight: 700;
+.container p a {
+  margin-top: 0.5rem;
+  color: var(--Pastel-blue);
+}
+
+.container p a:hover {
   color: var(--Purplish-blue);
+}
+
+.reset {
+  margin-top: 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Light-gray);
+  background-color: transparent;
+  outline: 2px solid var(--Light-gray);
+  cursor: pointer;
+  transition: outline 200ms;
+}
+
+.reset:hover {
+  outline-color: var(--Strawberry-red);
+  color: var(--Strawberry-red);
+}
+.reset:focus {
+  outline-color: var(--Purplish-blue);
+}
+.reset:active {
+  background-color: var(--Magnolia);
+}
+
+.reset span {
+  font-size: 1.5rem;
+  font-weight: 700;
 }

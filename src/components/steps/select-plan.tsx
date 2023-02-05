@@ -21,7 +21,7 @@ export const SelectPlan: FC = () => {
           <p>You have the option of monthly or yearly billing.</p>
         </div>
 
-        <div className={styles.plan__container}>
+        <ul className={styles.plan__container}>
           <Plans
             plan={'Arcade'}
             icon={arcadeIcon}
@@ -37,11 +37,9 @@ export const SelectPlan: FC = () => {
             icon={proIcon}
             price={billing === 'yearly' ? '150' : '15'}
           />
-        </div>
+        </ul>
 
-        <div className={styles.switcher__container}>
-          <PlanSwitcher />
-        </div>
+        <PlanSwitcher />
       </section>
     </Card>
   );

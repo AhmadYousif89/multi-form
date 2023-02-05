@@ -24,7 +24,7 @@ export const BottomNavigation: FC = () => {
     (stepNumber === 1 && !userInputIsValid) || (stepNumber === 2 && !planInfo.type);
 
   return (
-    <footer className={styles.container}>
+    <footer aria-label="bottom navigation" className={styles.container}>
       <div className={styles.action__buttons}>
         {stepNumber > 1 && stepNumber < 5 && (
           <Button onClick={prevStep} variant="prev_btn">

@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  margin-top: 1rem;
   padding: 0.75rem 1rem;
   margin-inline: auto;
   display: flex;
@@ -29,9 +30,13 @@
   cursor: pointer;
 }
 
+.label:focus-within {
+  outline: 2px dashed var(--Marine-blue);
+}
+
 .switcher {
   width: 3rem;
-  outline: none;
+  outline: 2px solid transparent;
   cursor: pointer;
   appearance: none;
   position: absolute;
@@ -59,4 +64,10 @@
 }
 .container[aria-checked='true'] span:first-of-type {
   color: var(--Cool-gray);
+}
+
+@media screen and (width > 1399px) {
+  .container {
+    margin-top: 3rem;
+  }
 }

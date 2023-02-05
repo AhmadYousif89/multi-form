@@ -1,5 +1,14 @@
-@media screen and (min-width: 431px) {
-  .container {
-    display: none;
+.display__wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media screen and (width > 1399px) {
+  .display__wrapper {
+    min-height: auto;
+    margin: 0 auto;
+    min-width: 30rem;
+    max-width: 30rem;
   }
 }

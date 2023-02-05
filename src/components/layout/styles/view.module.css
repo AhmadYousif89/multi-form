@@ -1,0 +1,18 @@
+.view__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media screen and (width > 1399px) {
+  .view__container {
+    flex-direction: row;
+    min-width: 60rem;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    justify-content: space-between;
+    background-color: var(--White);
+  }
+}

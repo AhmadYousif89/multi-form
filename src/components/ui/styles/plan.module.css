@@ -10,6 +10,11 @@
   cursor: pointer;
 }
 
+.container:not([aria-selected='true']):focus-visible {
+  outline-style: dashed;
+  outline-color: var(--Pastel-blue);
+}
+
 .container[aria-selected='true'] {
   outline-color: var(--Purplish-blue);
   background-color: var(--Magnolia);
@@ -27,4 +32,12 @@
 
 .details span {
   font-size: 0.85rem;
+}
+
+@media screen and (width > 1399px) {
+  .container {
+    gap: 2rem;
+    width: 10rem;
+    grid-template-columns: 1fr;
+  }
 }

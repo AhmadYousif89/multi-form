@@ -10,19 +10,22 @@
   color: var(--Magnolia);
   width: 2rem;
   height: 2rem;
-  border: 2px solid var(--Light-gray);
+  outline: 2px solid var(--Light-gray);
   border-radius: 50%;
   font-size: 0.8rem;
 }
 
 .button.nav__btn:hover {
-  border-color: var(--White);
+  outline-color: var(--White);
+}
+.button.nav__btn:focus {
+  outline: 2px dashed var(--Light-blue);
 }
 
 .button.nav__btn[aria-pressed='true'] {
   background-color: var(--Light-blue);
   color: var(--Marine-blue);
-  border: 0;
+  outline-style: dashed;
 }
 
 .button.prev__btn {
@@ -36,6 +39,9 @@
 .button.prev__btn:hover {
   color: var(--Dark-gray);
 }
+.button.prev__btn:focus {
+  outline: 1px dashed var(--Cool-gray);
+}
 
 .button.next__btn,
 .button.confirm__btn {
@@ -43,6 +49,7 @@
   padding: 0.85rem 1.15rem;
   border-radius: 6px;
   font-size: 0.75rem;
+  width: 4rem;
 }
 
 .button.next__btn {
@@ -59,12 +66,12 @@
   cursor: not-allowed;
   background-color: var(--Cool-gray);
 }
-.button[aria-disabled='false'] {
+.button[aria-disabled='false']:not(.prev__btn, .nav__btn) {
   color: var(--White);
 }
 .button[aria-disabled='true']:is(:focus, :focus-visible) {
   outline: 2px solid var(--Strawberry-red);
 }
-.button[aria-disabled='false']:is(:focus, :focus-visible) {
+.button[aria-disabled='false']:is(:focus, :focus-visible):not(.prev__btn, .nav__btn) {
   outline: 2px solid var(--Pastel-blue);
 }

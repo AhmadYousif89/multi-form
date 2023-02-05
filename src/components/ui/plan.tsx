@@ -18,7 +18,7 @@ export const Plans: FC<PlanProps> = ({ plan, price, icon }) => {
   } = useSubscription();
 
   return (
-    <div
+    <button
       className={styles.container}
       aria-selected={planInfo.type === plan}
       onClick={() => setSelectedPlan({ type: plan, price: +price })}>
@@ -33,6 +33,6 @@ export const Plans: FC<PlanProps> = ({ plan, price, icon }) => {
         </p>
         {billing === 'yearly' && <span>2 months free</span>}
       </div>
-    </div>
+    </button>
   );
 };

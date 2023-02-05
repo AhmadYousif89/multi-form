@@ -1,22 +1,19 @@
 .container {
-  display: grid;
-  position: relative;
-}
-
-.container figure {
   position: fixed;
-  z-index: -1;
 }
 
 .container ul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -150%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
 }
 
-@media screen and (min-width: 431px) {
+@media screen and (width > 431px) {
   .container {
     display: none;
   }

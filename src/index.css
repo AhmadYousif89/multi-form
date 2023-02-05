@@ -25,10 +25,10 @@
 }
 
 body {
-  min-height: 100vh;
+  margin: 0;
+  background-color: var(--Magnolia);
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
-  background-color: var(--Magnolia);
 }
 
 fieldset {
@@ -58,9 +58,15 @@ button {
 }
 
 .main {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (width > 431px) {
+  .main {
+    min-height: 100vh;
+  }
 }
 
 .general__container {
@@ -72,10 +78,10 @@ button {
 }
 
 .general__container .header h2 {
+  font-size: 1.8rem;
   color: var(--Marine-blue);
 }
 
 .general__container .header p {
-  margin-top: 1rem;
   color: var(--Cool-gray);
 }

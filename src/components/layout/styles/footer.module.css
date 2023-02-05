@@ -3,9 +3,6 @@
   padding: 1rem;
   margin-top: auto;
   min-height: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .action__buttons {
@@ -14,7 +11,13 @@
   justify-content: space-between;
 }
 
-@media screen and (min-width: 431px) {
+@media screen and (width > 1399px) {
+  .container {
+    background-color: transparent;
+  }
+}
+
+@media screen and (width > 430px) and (width < 1400px) {
   .container {
     display: none;
   }

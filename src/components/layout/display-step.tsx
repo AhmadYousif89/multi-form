@@ -7,6 +7,7 @@ import {
   Summary,
 } from '../../components/steps';
 import { useSubscription } from '../../context/subscription';
+import { BottomNavigation } from './bottom-nav';
 
 import styles from './styles/display-steps.module.css';
 
@@ -16,12 +17,15 @@ export const DisplayStep: FC = () => {
   } = useSubscription();
 
   return (
-    <div className={styles.container}>
-      {stepNumber === 1 && <PersonalInfo />}
-      {stepNumber === 2 && <SelectPlan />}
-      {stepNumber === 3 && <SelectAddons />}
-      {stepNumber === 4 && <Confirmation />}
-      {stepNumber === 5 && <Summary />}
+    <div className={styles.display__wrapper}>
+      <section aria-label="form steps" className={styles.container}>
+        {stepNumber === 1 && <PersonalInfo />}
+        {stepNumber === 2 && <SelectPlan />}
+        {stepNumber === 3 && <SelectAddons />}
+        {stepNumber === 4 && <Summary />}
+        {stepNumber === 5 && <Confirmation />}
+      </section>
+      <BottomNavigation />
     </div>
   );
 };
