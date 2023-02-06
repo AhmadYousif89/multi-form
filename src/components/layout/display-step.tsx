@@ -18,13 +18,13 @@ export const DisplayStep: FC = () => {
 
   return (
     <div className={styles.display__wrapper}>
-      <section aria-label="form steps" className={styles.container}>
+      <div aria-label="form steps" className={styles.container}>
         {stepNumber === 1 && <PersonalInfo />}
         {stepNumber === 2 && <SelectPlan />}
         {stepNumber === 3 && <SelectAddons />}
         {stepNumber === 4 && <Summary />}
         {stepNumber === 5 && <Confirmation />}
-      </section>
+      </div>
       <BottomNavigation />
     </div>
   );

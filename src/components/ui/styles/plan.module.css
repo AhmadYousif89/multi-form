@@ -37,7 +37,7 @@
 @media screen and (width > 1099px) {
   .container {
     gap: 2rem;
-    width: 10rem;
+    width: 8rem;
     grid-template-columns: 1fr;
   }
 }

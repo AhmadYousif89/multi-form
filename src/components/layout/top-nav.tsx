@@ -21,7 +21,7 @@ export const TopNavigation: FC = () => {
         <img src={topNavImg} alt="top navigation bar background image" />
       </figure>
 
-      <ul>
+      <div>
         <Button
           id={'UserInfo'}
           onClick={() => setFormStepNumber(1)}
@@ -56,7 +56,7 @@ export const TopNavigation: FC = () => {
             </Button>
           </>
         )}
-      </ul>
+      </div>
     </header>
   );
 };

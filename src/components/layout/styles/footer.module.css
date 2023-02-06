@@ -8,7 +8,6 @@
 .action__buttons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 @media screen and (width > 1099px) {
