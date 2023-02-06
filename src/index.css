@@ -63,6 +63,14 @@ button {
   justify-content: center;
 }
 
+.off-screen {
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  transform: translateY(-100rem);
+}
+
 @media screen and (width > 431px) {
   .main {
     min-height: 100vh;
