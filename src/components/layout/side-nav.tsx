@@ -32,7 +32,7 @@ export const SideNavigation: FC = () => {
           </Button>
           <div className={styles.li__desc}>
             <p>step 1</p>
-            <h3>your info</h3>
+            <h2>your info</h2>
           </div>
         </li>
         {userInputIsValid && (
@@ -46,7 +46,7 @@ export const SideNavigation: FC = () => {
             </Button>
             <div className={styles.li__desc}>
               <p>step 2</p>
-              <h3>select plan</h3>
+              <h2>select plan</h2>
             </div>
           </li>
         )}
@@ -62,7 +62,7 @@ export const SideNavigation: FC = () => {
               </Button>
               <div className={styles.li__desc}>
                 <p>step 3</p>
-                <h3>add-ons</h3>
+                <h2>add-ons</h2>
               </div>
             </li>
             <li className={styles.li}>
@@ -75,7 +75,7 @@ export const SideNavigation: FC = () => {
               </Button>
               <div className={styles.li__desc}>
                 <p>step 4</p>
-                <h3>summary</h3>
+                <h2>summary</h2>
               </div>
             </li>
           </>
