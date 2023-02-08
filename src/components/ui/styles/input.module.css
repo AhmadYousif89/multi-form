@@ -49,31 +49,25 @@
   font-weight: 700;
 }
 
+.input:focus {
+  outline-color: var(--Pastel-blue);
+}
 .input:focus:invalid {
+  outline-color: orange;
+}
+
+.input:focus:invalid :not(:placeholder-shown) {
   outline-color: var(--Strawberry-red);
 }
 
-.input:focus:invalid:placeholder-shown {
-  outline-color: orange;
+.input.input__error {
+  outline-color: var(--Strawberry-red);
 }
-
-.input:focus:not(:placeholder-shown):invalid {
-  outline-color: orange;
-}
-
-.input:focus:valid {
-  outline-color: var(--Pastel-blue);
-}
-
 .input::placeholder {
   color: var(--Light-gray);
   font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 1px;
-}
-
-.input.input__error {
-  outline-color: var(--Strawberry-red);
 }
 
 .fieldset input[id='cc'] {
