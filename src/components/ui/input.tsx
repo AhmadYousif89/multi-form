@@ -100,14 +100,8 @@ export const Input: FC<InputProps> = ({
       ? userInputs.cc
       : '';
 
-  return (
-    <fieldset className={styles.fieldset}>
-      {isError && <span className={styles.error}>{errorMsg}</span>}
-      {label && (
-        <label className={styles.label} htmlFor={id}>
-          <span>{label}</span>
-        </label>
-      )}
+  const renderInput =
+    name === 'cc' ? (
       <input
         required
         id={id}
@@ -122,6 +116,29 @@ export const Input: FC<InputProps> = ({
         placeholder={placeholder}
         className={`${styles.input} ${styleInputOnError} ${className}`}
       />
+    ) : (
+      <input
+        required
+        id={id}
+        type={type}
+        name={name}
+        defaultValue={inputValue}
+        onBlur={onBlurHandler}
+        onChange={onChangeHandler}
+        placeholder={placeholder}
+        className={`${styles.input} ${styleInputOnError} ${className}`}
+      />
+    );
+
+  return (
+    <fieldset className={styles.fieldset}>
+      {isError && <span className={styles.error}>{errorMsg}</span>}
+      {label && (
+        <label className={styles.label} htmlFor={id}>
+          <span>{label}</span>
+        </label>
+      )}
+      {renderInput}
     </fieldset>
   );
 };
