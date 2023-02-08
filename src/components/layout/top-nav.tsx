@@ -7,13 +7,16 @@ import styles from './styles/top-nav.module.css';
 
 export const TopNavigation: FC = () => {
   const {
-    state: { stepNumber, userInfo, planInfo },
+    state: { stepNumber, userInputs, planInfo },
     setFormStepNumber,
   } = useSubscription();
 
-  const userInputIsValid = [userInfo.name, userInfo.email, userInfo.phoneNumber].every(
-    Boolean,
-  );
+  const userInputIsValid = [
+    userInputs.name,
+    userInputs.email,
+    userInputs.phone,
+    userInputs.cc,
+  ].every(Boolean);
 
   return (
     <header aria-label="top navigation" className={styles.container}>
@@ -23,39 +26,36 @@ export const TopNavigation: FC = () => {
 
       <div>
         <Button
-          id={'UserInfo'}
+          id={'userInputs'}
           onClick={() => setFormStepNumber(1)}
           pressed={stepNumber === 1}
           variant="nav_btn">
           1
         </Button>
-        {userInputIsValid && (
-          <Button
-            id={'SelectPlan'}
-            onClick={() => setFormStepNumber(2)}
-            pressed={stepNumber === 2}
-            variant="nav_btn">
-            2
-          </Button>
-        )}
-        {planInfo.type && (
-          <>
-            <Button
-              id={'SelectAddons'}
-              onClick={() => setFormStepNumber(3)}
-              pressed={stepNumber === 3}
-              variant="nav_btn">
-              3
-            </Button>
-            <Button
-              id={'Confirmation'}
-              onClick={() => setFormStepNumber(4)}
-              pressed={stepNumber === 4}
-              variant="nav_btn">
-              4
-            </Button>
-          </>
-        )}
+        <Button
+          id={'SelectPlan'}
+          disabled={!userInputIsValid}
+          onClick={() => setFormStepNumber(2)}
+          pressed={stepNumber === 2}
+          variant="nav_btn">
+          2
+        </Button>
+        <Button
+          id={'SelectAddons'}
+          disabled={!planInfo.type}
+          onClick={() => setFormStepNumber(3)}
+          pressed={stepNumber === 3}
+          variant="nav_btn">
+          3
+        </Button>
+        <Button
+          id={'Summary'}
+          disabled={!planInfo.type}
+          onClick={() => setFormStepNumber(4)}
+          pressed={stepNumber === 4}
+          variant="nav_btn">
+          4
+        </Button>
       </div>
     </header>
   );

@@ -18,7 +18,7 @@ export const DisplayStep: FC = () => {
 
   return (
     <div className={styles.display__wrapper}>
-      <div aria-label="form steps" className={styles.container}>
+      <div className={styles.container}>
         {stepNumber === 1 && <PersonalInfo />}
         {stepNumber === 2 && <SelectPlan />}
         {stepNumber === 3 && <SelectAddons />}

@@ -18,14 +18,14 @@
 .button.nav__btn:hover {
   outline-color: var(--White);
 }
-.button.nav__btn:focus {
+.button.nav__btn:focus-visible {
   outline: 2px dashed var(--Light-blue);
 }
 
 .button.nav__btn[aria-pressed='true'] {
   background-color: var(--Light-blue);
   color: var(--Marine-blue);
-  outline-style: dashed;
+  outline-width: 0;
 }
 
 .button.prev__btn {
@@ -62,16 +62,16 @@
   background-color: var(--Purplish-blue);
 }
 
-.button[aria-disabled='true'] {
+.button:disabled {
   cursor: not-allowed;
   background-color: var(--Cool-gray);
 }
-.button[aria-disabled='false']:not(.prev__btn, .nav__btn) {
+.button:enabled:not(.prev__btn, .nav__btn) {
   color: var(--White);
 }
-.button[aria-disabled='true']:is(:focus, :focus-visible) {
+.button:disabled:is(:focus, :focus-visible) {
   outline: 2px solid var(--Strawberry-red);
 }
-.button[aria-disabled='false']:is(:focus, :focus-visible):not(.prev__btn, .nav__btn) {
+.button:enabled:is(:focus, :focus-visible):not(.prev__btn, .nav__btn) {
   outline: 2px solid var(--Pastel-blue);
 }

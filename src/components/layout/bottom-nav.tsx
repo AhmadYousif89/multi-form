@@ -6,16 +6,19 @@ import styles from './styles/footer.module.css';
 
 export const BottomNavigation: FC = () => {
   const {
-    state: { stepNumber, userInfo, planInfo, addons, isCompleted },
+    state: { stepNumber, userInputs, planInfo, addons, isCompleted },
     setFormStepNumber,
   } = useSubscription();
 
-  const userInputIsValid = [userInfo.name, userInfo.email, userInfo.phoneNumber].every(
-    Boolean,
-  );
+  const userInputIsValid = [
+    userInputs.name,
+    userInputs.email,
+    userInputs.phone,
+    userInputs.cc,
+  ].every(Boolean);
 
   const submitSubscriptionData = () => {
-    const sub_details = { userInfo, planInfo, addons };
+    const sub_details = { userInputs, planInfo, addons };
     console.log(sub_details);
   };
 

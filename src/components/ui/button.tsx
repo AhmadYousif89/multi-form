@@ -4,7 +4,7 @@ import { useSubscription } from '../../context/subscription';
 import styles from './styles/button.module.css';
 
 type BtnVariant = 'next_btn' | 'prev_btn' | 'nav_btn' | 'confirm_btn';
-type Steps = 'UserInfo' | 'SelectPlan' | 'SelectAddons' | 'Summary' | 'Confirmation';
+type Steps = 'userInputs' | 'SelectPlan' | 'SelectAddons' | 'Summary' | 'Confirmation';
 type ButtonProps = {
   id?: Steps;
   pressed?: boolean;
@@ -39,10 +39,10 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   if (variant === 'confirm_btn') classes = styles.confirm__btn;
 
   let navBtnTitle = '';
-  if (id === 'UserInfo') navBtnTitle = 'Step 1 personal info';
+  if (id === 'userInputs') navBtnTitle = 'Step 1 personal info';
   if (id === 'SelectPlan') navBtnTitle = 'Step 2 select your plan';
   if (id === 'SelectAddons') navBtnTitle = 'Step 3 choose add-ons';
-  if (id === 'Confirmation') navBtnTitle = 'Step 4 finishing up';
+  if (id === 'Summary') navBtnTitle = 'Step 4 finishing up';
   if (isCompleted) navBtnTitle = 'disabled';
 
   let nextBtnTitle = '';
@@ -70,7 +70,6 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
       title={title}
       aria-pressed={pressed}
       disabled={disabled || isCompleted}
-      aria-disabled={disabled || isCompleted}
       onClick={variant === 'confirm_btn' ? onComplete : onClick}
       className={`${styles.button} ${classes}`}>
       {children}

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { Card, Input } from '../ui';
 
 import styles from './styles/personal-info.module.css';
@@ -13,21 +14,39 @@ export const PersonalInfo: FC = () => {
         </div>
 
         <form className={styles.form}>
-          <Input type="text" id="name" label="Name" placeholder="e.g. John Snow" />
+          <Input
+            id="name"
+            type="text"
+            name="name"
+            label="Name"
+            placeholder="e.g. John Snow"
+          />
 
           <Input
             id="email"
             type="email"
+            name="email"
             label="Email Address"
             placeholder="e.g. johnsnow@gmail.com"
           />
 
-          <Input
-            type="text"
-            id="phoneNumber"
-            label="Phone Number"
-            placeholder="e.g. +01 01234567890"
-          />
+          <div>
+            <Input
+              id="cc"
+              name="cc"
+              label="+"
+              type="number"
+              placeholder="123"
+              className={styles.cc__input}
+            />
+            <Input
+              id="phone"
+              type="text"
+              name="phone"
+              label="Phone Number"
+              placeholder="e.g. 01234567890"
+            />
+          </div>
         </form>
       </section>
     </Card>

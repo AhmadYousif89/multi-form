@@ -57,18 +57,29 @@ button {
   all: unset;
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button,
+input[type='number'] {
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: textfield !important;
+}
+
 .main {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.off-screen {
-  margin: 0;
-  opacity: 0;
+.sr-only {
   position: absolute;
-  text-align: center;
-  transform: translateY(-100rem);
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0px;
+  margin: -0.0625rem;
+  overflow: hidden;
+  clip: rect(0px, 0px, 0px, 0px);
+  border: 0px none;
 }
 
 @media screen and (width > 431px) {

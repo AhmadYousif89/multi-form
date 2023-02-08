@@ -42,14 +42,22 @@
   outline-color: var(--Strawberry-red);
   color: var(--Strawberry-red);
 }
-.reset:focus {
-  outline-color: var(--Purplish-blue);
+.reset:focus-within {
+  outline-color: var(--Strawberry-red);
 }
 .reset:active {
   background-color: var(--Magnolia);
 }
 
 .reset span {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
+  border-radius: 50%;
+  translate: 0 -0.6rem;
+  width: 100%;
+  height: 100%;
+}
+.reset span:focus-visible {
+  border: 0;
+  outline: 0;
 }

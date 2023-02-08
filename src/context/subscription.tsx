@@ -4,13 +4,13 @@ import {
   useContext,
   useCallback,
   createContext,
-  PropsWithChildren,
   SetStateAction,
+  PropsWithChildren,
 } from 'react';
 
-export type UserInfo = Record<InputTypes, string>;
-export type UserInfoValidity = Record<InputTypes, boolean>;
-export type InputTypes = 'name' | 'email' | 'phoneNumber';
+export type InputNames = 'name' | 'email' | 'phone' | 'cc';
+export type UserInputsValidity = Record<InputNames, boolean>;
+type UserInputs = Record<InputNames, string>;
 
 export type Billing = 'yearly' | 'monthly';
 export type PlanTypes = 'Arcade' | 'Advanced' | 'Pro' | '';
@@ -22,7 +22,7 @@ type Addon = { type: AddonTypes; price: number };
 type InitState = {
   planInfo: Plan;
   addons: Addon[];
-  userInfo: UserInfo;
+  userInputs: UserInputs;
   isCompleted: boolean;
   stepNumber: number;
   billing: Billing;
@@ -34,7 +34,7 @@ const initState: InitState = {
   billing: 'monthly',
   planInfo: { type: '', price: 0 },
   addons: [],
-  userInfo: { name: '', email: '', phoneNumber: '' },
+  userInputs: { name: '', email: '', phone: '', cc: '' },
 };
 
 const initContextState: UseSubscriptionContext = {
@@ -65,7 +65,7 @@ const useSubscriptionContext = (initState: InitState) => {
   const [addons, setAddons] = useState(initState.addons);
   const [billing, setBilling] = useState(initState.billing);
   const [planInfo, setPlanInfo] = useState(initState.planInfo);
-  const [userInfo, setUserInfo] = useState(initState.userInfo);
+  const [userInputs, setUserInputs] = useState(initState.userInputs);
   const [isCompleted, setIsCompleted] = useState(initState.isCompleted);
 
   const setFormIsCompleted = useCallback(
@@ -84,11 +84,9 @@ const useSubscriptionContext = (initState: InitState) => {
   );
 
   const setUserValues = useCallback(
-    ({ type, value }: { type: InputTypes; value: string }) =>
-      setUserInfo(userInfo => ({
-        ...userInfo,
-        [type]: value,
-      })),
+    (userInputs: UserInputs | SetStateAction<UserInputs>) => {
+      setUserInputs(userInputs);
+    },
     [],
   );
 
@@ -144,13 +142,13 @@ const useSubscriptionContext = (initState: InitState) => {
     setBilling('monthly');
     setIsCompleted(false);
     setPlanInfo({ type: '', price: 0 });
-    setUserInfo({ name: '', email: '', phoneNumber: '' });
+    setUserInputs({ name: '', email: '', phone: '', cc: '' });
   }, []);
 
   const state = {
     isCompleted,
     stepNumber,
-    userInfo,
+    userInputs,
     billing,
     addons,
     planInfo,
