@@ -7,5 +7,6 @@
 @media screen and (width > 1099px) {
   .plan__container {
     flex-direction: row;
+    min-height: 11rem;
   }
 }

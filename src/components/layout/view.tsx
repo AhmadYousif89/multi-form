@@ -8,10 +8,10 @@ import styles from './styles/view.module.css';
 
 export const View: FC = () => {
   return (
-    <div className={styles.view__container}>
+    <section className={styles.view__container}>
       <TopNavigation />
       <SideNavigation />
       <DisplayStep />
-    </div>
+    </section>
   );
 };
