@@ -8,6 +8,7 @@ import {
   PropsWithChildren,
 } from 'react';
 
+type SubscriptionState = 'active' | 'complete';
 export type InputNames = 'name' | 'email' | 'phone' | 'cc';
 export type UserInputsValidity = Record<InputNames, boolean>;
 type UserInputs = Record<InputNames, string>;
@@ -22,18 +23,18 @@ type Addon = { type: AddonTypes; price: number };
 type InitState = {
   planInfo: Plan;
   addons: Addon[];
-  userInputs: UserInputs;
-  isCompleted: boolean;
-  stepNumber: number;
   billing: Billing;
+  stepNumber: number;
+  userInputs: UserInputs;
+  subscriptionState: SubscriptionState;
 };
 
 const initState: InitState = {
-  isCompleted: false,
+  addons: [],
   stepNumber: 1,
   billing: 'monthly',
+  subscriptionState: 'active',
   planInfo: { type: '', price: 0 },
-  addons: [],
   userInputs: { name: '', email: '', phone: '', cc: '' },
 };
 
@@ -45,8 +46,8 @@ const initContextState: UseSubscriptionContext = {
   billingSwitcher: () => {},
   setSelectedPlan: () => {},
   setFormStepNumber: () => {},
-  setFormIsCompleted: () => {},
   resetSubscription: () => {},
+  setSubcriptionState: () => {},
 };
 
 const UIContext = createContext<UseSubscriptionContext>(initContextState);
@@ -61,15 +62,16 @@ export const SubscriptionProvider: FC<PropsWithChildren> = ({ children }) => {
 
 type UseSubscriptionContext = ReturnType<typeof useSubscriptionContext>;
 const useSubscriptionContext = (initState: InitState) => {
-  const [stepNumber, setStepNumber] = useState(initState.stepNumber);
   const [addons, setAddons] = useState(initState.addons);
   const [billing, setBilling] = useState(initState.billing);
   const [planInfo, setPlanInfo] = useState(initState.planInfo);
+  const [stepNumber, setStepNumber] = useState(initState.stepNumber);
   const [userInputs, setUserInputs] = useState(initState.userInputs);
-  const [isCompleted, setIsCompleted] = useState(initState.isCompleted);
+  const [subscriptionState, setsubscriptionState] = useState(initState.subscriptionState);
 
-  const setFormIsCompleted = useCallback(
-    (isCompleted: boolean) => setIsCompleted(isCompleted),
+  const setSubcriptionState = useCallback(
+    (subscriptionState: SetStateAction<SubscriptionState>) =>
+      setsubscriptionState(subscriptionState),
     [],
   );
 
@@ -79,39 +81,31 @@ const useSubscriptionContext = (initState: InitState) => {
   );
 
   const setFormStepNumber = useCallback(
-    (step: SetStateAction<number> | number) => setStepNumber(step),
+    (step: SetStateAction<number>) => setStepNumber(step),
     [],
   );
 
   const setUserValues = useCallback(
-    (userInputs: UserInputs | SetStateAction<UserInputs>) => {
-      setUserInputs(userInputs);
-    },
+    (userInputs: SetStateAction<UserInputs>) => setUserInputs(userInputs),
     [],
   );
 
-  const setSelectedPlan = useCallback((plan: Plan | SetStateAction<Plan>) => {
-    if (typeof plan === 'object') {
-      const { type, price } = plan;
-      setPlanInfo(pv => (pv.type === type ? { type: '', price: 0 } : { type, price }));
-    } else setPlanInfo(plan);
-  }, []);
+  const setSelectedPlan = useCallback(
+    (plan: SetStateAction<Plan>) => setPlanInfo(plan),
+    [],
+  );
 
-  const setPlanAddon = useCallback((addon: Addon | SetStateAction<Addon[]>) => {
-    if (typeof addon === 'object' && !Array.isArray(addon)) {
-      const { type, price } = addon;
-      setAddons(prevAddons => {
-        const exAddon = prevAddons.find(addon => addon.type === type);
-        if (exAddon) return prevAddons.filter(addon => addon.type !== exAddon.type);
-        return [...prevAddons, { type, price }];
-      });
-    } else setAddons(addon);
-  }, []);
+  const setPlanAddon = useCallback(
+    (addon: SetStateAction<Addon[]>) => setAddons(addon),
+    [],
+  );
 
   const billingSwitcher = useCallback(() => {
     let HIGHEST_IN_MO;
     let LOWEST_IN_YR;
+
     setBillingPlan(billing === 'monthly' ? 'yearly' : 'monthly');
+
     setPlanAddon(pv => {
       return pv.map(addon => {
         const { type, price } = addon;
@@ -124,6 +118,7 @@ const useSubscriptionContext = (initState: InitState) => {
         return { ...addon };
       });
     });
+
     setSelectedPlan(pvPlan => {
       const { type, price } = pvPlan;
       HIGHEST_IN_MO = billing === 'monthly' && Math.max(price);
@@ -140,18 +135,18 @@ const useSubscriptionContext = (initState: InitState) => {
     setAddons([]);
     setStepNumber(1);
     setBilling('monthly');
-    setIsCompleted(false);
+    setsubscriptionState('active');
     setPlanInfo({ type: '', price: 0 });
     setUserInputs({ name: '', email: '', phone: '', cc: '' });
   }, []);
 
   const state = {
-    isCompleted,
-    stepNumber,
+    subscriptionState,
     userInputs,
+    stepNumber,
+    planInfo,
     billing,
     addons,
-    planInfo,
   };
   return {
     state,
@@ -161,8 +156,8 @@ const useSubscriptionContext = (initState: InitState) => {
     billingSwitcher,
     setSelectedPlan,
     setFormStepNumber,
-    setFormIsCompleted,
     resetSubscription,
+    setSubcriptionState,
   };
 };
 

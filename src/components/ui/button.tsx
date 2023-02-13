@@ -22,14 +22,14 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   disabled,
 }) => {
   const {
-    state: { stepNumber, isCompleted },
-    setFormIsCompleted,
+    state: { stepNumber, subscriptionState },
+    setSubcriptionState,
     setFormStepNumber,
   } = useSubscription();
 
   const onComplete = () => {
     setFormStepNumber(5);
-    setFormIsCompleted(true);
+    setSubcriptionState('complete');
   };
 
   let classes = '';
@@ -43,11 +43,11 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   if (id === 'SelectPlan') navBtnTitle = 'Step 2 select your plan';
   if (id === 'SelectAddons') navBtnTitle = 'Step 3 choose add-ons';
   if (id === 'Summary') navBtnTitle = 'Step 4 finishing up';
-  if (isCompleted) navBtnTitle = 'disabled';
+  if (subscriptionState) navBtnTitle = 'disabled';
 
   let nextBtnTitle = '';
   if (disabled) {
-    if (stepNumber === 1) nextBtnTitle = 'fill up the form to continue';
+    if (stepNumber === 1) nextBtnTitle = 'fill out the form to continue';
     if (stepNumber === 2) nextBtnTitle = 'select your plan to continue';
   } else {
     if (stepNumber === 1) nextBtnTitle = 'select your plan';
@@ -69,7 +69,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
     <button
       title={title}
       aria-pressed={pressed}
-      disabled={disabled || isCompleted}
+      disabled={disabled || subscriptionState === 'complete'}
       onClick={variant === 'confirm_btn' ? onComplete : onClick}
       className={`${styles.button} ${classes}`}>
       {children}

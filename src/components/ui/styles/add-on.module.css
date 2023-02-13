@@ -34,8 +34,17 @@
   color: var(--Cool-gray);
 }
 
-.container span {
+.container div:last-child {
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--Purplish-blue);
+}
+
+@media screen and (width > 1099px) {
+  .details h3 {
+    font-size: 1rem;
+  }
+  .details p {
+    font-size: 0.8rem;
+  }
 }

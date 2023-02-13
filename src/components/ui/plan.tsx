@@ -21,7 +21,11 @@ export const Plans: FC<PlanProps> = ({ plan, price, icon }) => {
     <button
       className={styles.container}
       aria-selected={planInfo.type === plan}
-      onClick={() => setSelectedPlan({ type: plan, price: +price })}>
+      onClick={() =>
+        setSelectedPlan(pv =>
+          pv.type === plan ? { type: '', price: 0 } : { type: plan, price: +price },
+        )
+      }>
       <figure>
         <img src={icon} alt={`${plan} plan icon`} />
       </figure>

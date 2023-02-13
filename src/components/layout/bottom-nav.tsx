@@ -6,7 +6,7 @@ import styles from './styles/footer.module.css';
 
 export const BottomNavigation: FC = () => {
   const {
-    state: { stepNumber, userInputs, planInfo, addons, isCompleted },
+    state: { stepNumber, userInputs, planInfo, addons, subscriptionState },
     setFormStepNumber,
   } = useSubscription();
 
@@ -23,8 +23,8 @@ export const BottomNavigation: FC = () => {
   };
 
   useEffect(() => {
-    if (isCompleted) submitSubscriptionData();
-  }, [isCompleted]);
+    if (subscriptionState) submitSubscriptionData();
+  }, [subscriptionState]);
 
   const nextStep = () => setFormStepNumber(pvStepNum => pvStepNum + 1);
 
@@ -34,22 +34,26 @@ export const BottomNavigation: FC = () => {
     (stepNumber === 1 && !userInputIsValid) || (stepNumber === 2 && !planInfo.type);
 
   return (
-    <footer aria-label="bottom navigation" className={styles.container}>
-      <div className={styles.action__buttons}>
-        {stepNumber > 1 && stepNumber < 5 && (
-          <Button onClick={prevStep} variant="prev_btn">
-            go back
-          </Button>
-        )}
-        {stepNumber < 5 && !isCompleted && (
-          <Button
-            onClick={nextStep}
-            disabled={isDisabled}
-            variant={`${stepNumber === 4 ? 'confirm' : 'next'}_btn`}>
-            {stepNumber === 4 ? 'confirm' : 'next step'}
-          </Button>
-        )}
-      </div>
-    </footer>
+    <>
+      {subscriptionState === 'active' && (
+        <footer aria-label="bottom navigation" className={styles.container}>
+          <div className={styles.action__buttons}>
+            {stepNumber > 1 && (
+              <Button onClick={prevStep} variant="prev_btn">
+                go back
+              </Button>
+            )}
+            {stepNumber < 5 && (
+              <Button
+                onClick={nextStep}
+                disabled={isDisabled}
+                variant={`${stepNumber === 4 ? 'confirm' : 'next'}_btn`}>
+                {stepNumber === 4 ? 'confirm' : 'next step'}
+              </Button>
+            )}
+          </div>
+        </footer>
+      )}
+    </>
   );
 };

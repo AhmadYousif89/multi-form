@@ -16,27 +16,36 @@ export const Addon: FC<AddonProps> = ({ addon, price, description }) => {
     setPlanAddon,
   } = useSubscription();
 
-  const selectedAddons = addons.map(addon => (addon ? addon.type : []));
-  const addonIsSelected = selectedAddons.some(selectedAddon => selectedAddon === addon);
+  const addonIsSelected = addons
+    .map(addon => addon.type) // AddonTypes[]
+    .some(selectedAddon => selectedAddon === addon);
 
   return (
-    <div
+    <li
       className={styles.container}
       aria-selected={addonIsSelected}
-      onClick={() => setPlanAddon({ type: addon, price: +price })}>
+      onClick={() =>
+        setPlanAddon(prevAddons => {
+          const exAddon = prevAddons.find(a => a.type === addon);
+          if (exAddon) {
+            return prevAddons.filter(a => a.type !== exAddon.type);
+          }
+          return [...prevAddons, { type: addon, price: +price }];
+        })
+      }>
       <input
         type={'checkbox'}
         checked={addonIsSelected}
         className={styles.checkbox}
-        onChange={e => e.target.checked === addonIsSelected}
+        onChange={e => e.target.checked}
       />
       <div className={styles.details}>
         <h3>{addon}</h3>
         <p>{description}</p>
       </div>
-      <span>
+      <div>
         +${price}/{billing === 'monthly' ? 'mo' : 'yr'}
-      </span>
-    </div>
+      </div>
+    </li>
   );
 };
