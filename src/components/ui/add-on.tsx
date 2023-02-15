@@ -16,23 +16,21 @@ export const Addon: FC<AddonProps> = ({ addon, price, description }) => {
     setPlanAddon,
   } = useSubscription();
 
-  const addonIsSelected = addons
-    .map(addon => addon.type) // AddonTypes[]
-    .some(selectedAddon => selectedAddon === addon);
+  const selectAddon = () =>
+    setPlanAddon(prevAddons => {
+      const exAddon = prevAddons.find(a => a.type === addon);
+      if (exAddon) {
+        return prevAddons.filter(a => a.type !== exAddon.type);
+      }
+      return [...prevAddons, { type: addon, price: +price }];
+    });
+  const addonIsSelected = addons.some(a => a.type === addon);
 
   return (
     <li
+      onClick={selectAddon}
       className={styles.container}
-      aria-selected={addonIsSelected}
-      onClick={() =>
-        setPlanAddon(prevAddons => {
-          const exAddon = prevAddons.find(a => a.type === addon);
-          if (exAddon) {
-            return prevAddons.filter(a => a.type !== exAddon.type);
-          }
-          return [...prevAddons, { type: addon, price: +price }];
-        })
-      }>
+      aria-selected={addonIsSelected}>
       <input
         type={'checkbox'}
         checked={addonIsSelected}
