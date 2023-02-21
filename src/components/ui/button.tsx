@@ -43,7 +43,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   if (id === 'SelectPlan') navBtnTitle = 'Step 2 select your plan';
   if (id === 'SelectAddons') navBtnTitle = 'Step 3 choose add-ons';
   if (id === 'Summary') navBtnTitle = 'Step 4 finishing up';
-  if (subscriptionState) navBtnTitle = 'disabled';
+  if (subscriptionState === 'complete') navBtnTitle = 'disabled';
 
   let nextBtnTitle = '';
   if (disabled) {
