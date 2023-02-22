@@ -41,7 +41,7 @@ export const SideNavigation: FC = () => {
         </li>
         <li className={styles.li}>
           <Button
-            id={'SelectPlan'}
+            id={'selectPlan'}
             disabled={!userInputIsValid}
             onClick={() => setFormStepNumber(2)}
             pressed={stepNumber === 2}
@@ -55,7 +55,7 @@ export const SideNavigation: FC = () => {
         </li>
         <li className={styles.li}>
           <Button
-            id={'SelectAddons'}
+            id={'selectAddons'}
             disabled={!planInfo.type}
             onClick={() => setFormStepNumber(3)}
             pressed={stepNumber === 3}
@@ -69,7 +69,7 @@ export const SideNavigation: FC = () => {
         </li>
         <li className={styles.li}>
           <Button
-            id={'Summary'}
+            id={'summary'}
             disabled={!planInfo.type}
             onClick={() => setFormStepNumber(4)}
             pressed={stepNumber === 4}

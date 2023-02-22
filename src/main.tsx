@@ -5,7 +5,8 @@ import './index.css';
 import App from './App';
 import { SubscriptionProvider } from './context/subscription';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const root = document.getElementById('root') as HTMLElement;
+ReactDOM.createRoot(root).render(
   <StrictMode>
     <SubscriptionProvider>
       <App />

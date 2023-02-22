@@ -33,7 +33,7 @@ export const TopNavigation: FC = () => {
           1
         </Button>
         <Button
-          id={'SelectPlan'}
+          id={'selectPlan'}
           disabled={!userInputIsValid}
           onClick={() => setFormStepNumber(2)}
           pressed={stepNumber === 2}
@@ -41,7 +41,7 @@ export const TopNavigation: FC = () => {
           2
         </Button>
         <Button
-          id={'SelectAddons'}
+          id={'selectAddons'}
           disabled={!planInfo.type}
           onClick={() => setFormStepNumber(3)}
           pressed={stepNumber === 3}
@@ -49,7 +49,7 @@ export const TopNavigation: FC = () => {
           3
         </Button>
         <Button
-          id={'Summary'}
+          id={'summary'}
           disabled={!planInfo.type}
           onClick={() => setFormStepNumber(4)}
           pressed={stepNumber === 4}

@@ -4,7 +4,7 @@ import { useSubscription } from '../../context/subscription';
 import styles from './styles/button.module.css';
 
 type BtnVariant = 'next_btn' | 'prev_btn' | 'nav_btn' | 'confirm_btn';
-type Steps = 'userInputs' | 'SelectPlan' | 'SelectAddons' | 'Summary' | 'Confirmation';
+type Steps = 'userInputs' | 'selectPlan' | 'selectAddons' | 'summary' | 'confirmation';
 type ButtonProps = {
   id?: Steps;
   pressed?: boolean;
@@ -40,9 +40,9 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
 
   let navBtnTitle = '';
   if (id === 'userInputs') navBtnTitle = 'Step 1 personal info';
-  if (id === 'SelectPlan') navBtnTitle = 'Step 2 select your plan';
-  if (id === 'SelectAddons') navBtnTitle = 'Step 3 choose add-ons';
-  if (id === 'Summary') navBtnTitle = 'Step 4 finishing up';
+  if (id === 'selectPlan') navBtnTitle = 'Step 2 select your plan';
+  if (id === 'selectAddons') navBtnTitle = 'Step 3 choose add-ons';
+  if (id === 'summary') navBtnTitle = 'Step 4 finishing up';
   if (subscriptionState === 'complete') navBtnTitle = 'disabled';
 
   let nextBtnTitle = '';
