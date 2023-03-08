@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
 import { Card } from '../ui';
 import { useSubscription } from '../../context/subscription';
 
 import styles from './styles/summary.module.css';
 
-export const Summary: FC = () => {
+export const Summary = () => {
   const {
     state: { planInfo, billing, addons },
     billingSwitcher,

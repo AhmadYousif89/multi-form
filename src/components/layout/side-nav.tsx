@@ -1,15 +1,13 @@
-import { FC } from 'react';
-
 import { Button } from '../ui';
 import { useSubscription } from '../../context/subscription';
 
 import styles from './styles/side-nav.module.css';
 import sideImage from '../../assets/images/bg-sidebar-desktop.svg';
 
-export const SideNavigation: FC = () => {
+export const SideNavigation = () => {
   const {
     state: { stepNumber, userInputs, planInfo },
-    setFormStepNumber,
+    setCurrentStepNumber,
   } = useSubscription();
 
   const userInputIsValid = [
@@ -29,9 +27,9 @@ export const SideNavigation: FC = () => {
         <li className={styles.li}>
           <Button
             id={'userInputs'}
-            onClick={() => setFormStepNumber(1)}
+            onClick={() => setCurrentStepNumber(1)}
             pressed={stepNumber === 1}
-            variant="nav_btn">
+            variants="nav_btn">
             1
           </Button>
           <div className={styles.li__desc}>
@@ -43,9 +41,9 @@ export const SideNavigation: FC = () => {
           <Button
             id={'selectPlan'}
             disabled={!userInputIsValid}
-            onClick={() => setFormStepNumber(2)}
+            onClick={() => setCurrentStepNumber(2)}
             pressed={stepNumber === 2}
-            variant="nav_btn">
+            variants="nav_btn">
             2
           </Button>
           <div className={styles.li__desc}>
@@ -57,9 +55,9 @@ export const SideNavigation: FC = () => {
           <Button
             id={'selectAddons'}
             disabled={!planInfo.type}
-            onClick={() => setFormStepNumber(3)}
+            onClick={() => setCurrentStepNumber(3)}
             pressed={stepNumber === 3}
-            variant="nav_btn">
+            variants="nav_btn">
             3
           </Button>
           <div className={styles.li__desc}>
@@ -71,9 +69,9 @@ export const SideNavigation: FC = () => {
           <Button
             id={'summary'}
             disabled={!planInfo.type}
-            onClick={() => setFormStepNumber(4)}
+            onClick={() => setCurrentStepNumber(4)}
             pressed={stepNumber === 4}
-            variant="nav_btn">
+            variants="nav_btn">
             4
           </Button>
           <div className={styles.li__desc}>

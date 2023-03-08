@@ -1,14 +1,12 @@
-import { FC } from 'react';
-
 import { Button } from '../ui';
 import { useSubscription } from '../../context/subscription';
 import topNavImg from '../../assets/images/bg-sidebar-mobile.svg';
 import styles from './styles/top-nav.module.css';
 
-export const TopNavigation: FC = () => {
+export const TopNavigation = () => {
   const {
     state: { stepNumber, userInputs, planInfo },
-    setFormStepNumber,
+    setCurrentStepNumber,
   } = useSubscription();
 
   const userInputIsValid = [
@@ -27,33 +25,33 @@ export const TopNavigation: FC = () => {
       <div>
         <Button
           id={'userInputs'}
-          onClick={() => setFormStepNumber(1)}
+          onClick={() => setCurrentStepNumber(1)}
           pressed={stepNumber === 1}
-          variant="nav_btn">
+          variants="nav_btn">
           1
         </Button>
         <Button
           id={'selectPlan'}
           disabled={!userInputIsValid}
-          onClick={() => setFormStepNumber(2)}
+          onClick={() => setCurrentStepNumber(2)}
           pressed={stepNumber === 2}
-          variant="nav_btn">
+          variants="nav_btn">
           2
         </Button>
         <Button
           id={'selectAddons'}
           disabled={!planInfo.type}
-          onClick={() => setFormStepNumber(3)}
+          onClick={() => setCurrentStepNumber(3)}
           pressed={stepNumber === 3}
-          variant="nav_btn">
+          variants="nav_btn">
           3
         </Button>
         <Button
           id={'summary'}
           disabled={!planInfo.type}
-          onClick={() => setFormStepNumber(4)}
+          onClick={() => setCurrentStepNumber(4)}
           pressed={stepNumber === 4}
-          variant="nav_btn">
+          variants="nav_btn">
           4
         </Button>
       </div>

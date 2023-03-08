@@ -1,13 +1,13 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { Button } from '../ui';
 import { useSubscription } from '../../context/subscription';
 import styles from './styles/footer.module.css';
 
-export const BottomNavigation: FC = () => {
+export const BottomNavigation = () => {
   const {
     state: { stepNumber, userInputs, planInfo, addons, subscriptionState },
-    setFormStepNumber,
+    setCurrentStepNumber,
   } = useSubscription();
 
   const userInputIsValid = [
@@ -23,12 +23,12 @@ export const BottomNavigation: FC = () => {
   };
 
   useEffect(() => {
-    if (subscriptionState) submitSubscriptionData();
+    if (subscriptionState === 'complete') submitSubscriptionData();
   }, [subscriptionState]);
 
-  const nextStep = () => setFormStepNumber(pvStepNum => pvStepNum + 1);
+  const nextStep = () => setCurrentStepNumber(pvStepNum => pvStepNum + 1);
 
-  const prevStep = () => setFormStepNumber(pvStepNum => pvStepNum - 1);
+  const prevStep = () => setCurrentStepNumber(pvStepNum => pvStepNum - 1);
 
   const isDisabled =
     (stepNumber === 1 && !userInputIsValid) || (stepNumber === 2 && !planInfo.type);
@@ -39,7 +39,7 @@ export const BottomNavigation: FC = () => {
         <footer aria-label="bottom navigation" className={styles.container}>
           <div className={styles.action__buttons}>
             {stepNumber > 1 && (
-              <Button onClick={prevStep} variant="prev_btn">
+              <Button onClick={prevStep} variants="prev_btn">
                 go back
               </Button>
             )}
@@ -47,7 +47,7 @@ export const BottomNavigation: FC = () => {
               <Button
                 onClick={nextStep}
                 disabled={isDisabled}
-                variant={`${stepNumber === 4 ? 'confirm' : 'next'}_btn`}>
+                variants={`${stepNumber === 4 ? 'confirm' : 'next'}_btn`}>
                 {stepNumber === 4 ? 'confirm' : 'next step'}
               </Button>
             )}

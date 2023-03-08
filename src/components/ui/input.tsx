@@ -1,26 +1,15 @@
-import { FC, useState, ChangeEvent, HTMLInputTypeAttribute } from 'react';
+import { FC, useState, ChangeEvent, InputHTMLAttributes } from 'react';
 
 import { InputNames, useSubscription } from '../../context/subscription';
-
 import styles from './styles/input.module.css';
 
 type InputProps = {
   id: InputNames;
   name: InputNames;
-  className?: string;
-  placeholder?: string;
-  type: HTMLInputTypeAttribute;
   label?: 'Name' | 'Email Address' | 'Phone Number' | '+';
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: FC<InputProps> = ({
-  id,
-  name,
-  type,
-  label,
-  placeholder,
-  className = '',
-}) => {
+export const Input: FC<InputProps> = ({ name, className, ...props }) => {
   const [isTouched, setIsTouched] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -29,20 +18,10 @@ export const Input: FC<InputProps> = ({
     setUserValues,
   } = useSubscription();
 
-  /**
-   * some valid paterns : "word" | "word1 word2" | "word1word2"
-   */
   const NAME_REGEX = /^\S+(\s\S+)*$/;
-  /**
-   * some valid paterns : a@a.a | 1@1.a | a1@a1.aa
-   */
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[a-z]{1,8}$/;
-  /**
-   * some valid paterns : +1 234 567 8900 | +01 234 56 78 89 00 | +012345678900
-   */
   const PHONE_REGEX = /^\d{2,}\s?\d{2,}\s?\d{2,}\s?\d{2,}\s?\d{2,}$/;
-
-  const CC_REGEX = /^([1-9][0-9]{0,2})$/; // 1 ==> 999
+  const CC_REGEX = /^([1-9][0-9]{0,2})$/;
 
   let isValid = false;
 
@@ -103,39 +82,33 @@ export const Input: FC<InputProps> = ({
   const renderInput =
     name === 'cc' ? (
       <input
-        required
-        id={id}
         min={1}
         max={999}
         step={10}
-        type={type}
         name={name}
-        defaultValue={inputValue}
         onBlur={onBlurHandler}
+        defaultValue={inputValue}
         onChange={onChangeHandler}
-        placeholder={placeholder}
         className={`${styles.input} ${styleInputOnError} ${className}`}
+        {...props}
       />
     ) : (
       <input
-        required
-        id={id}
-        type={type}
         name={name}
-        defaultValue={inputValue}
         onBlur={onBlurHandler}
+        defaultValue={inputValue}
         onChange={onChangeHandler}
-        placeholder={placeholder}
         className={`${styles.input} ${styleInputOnError} ${className}`}
+        {...props}
       />
     );
 
   return (
     <fieldset className={styles.fieldset}>
       {isError && <span className={styles.error}>{errorMsg}</span>}
-      {label && (
-        <label className={styles.label} htmlFor={id}>
-          <span>{label}</span>
+      {props.label && (
+        <label className={styles.label} htmlFor={props.id}>
+          <span>{props.label}</span>
         </label>
       )}
       {renderInput}

@@ -9,14 +9,14 @@ type ButtonProps = {
   id?: Steps;
   pressed?: boolean;
   disabled?: boolean;
-  variant: BtnVariant;
+  variants: BtnVariant;
   onClick?: () => void;
 };
 
 export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   id,
   children,
-  variant,
+  variants,
   onClick,
   pressed,
   disabled,
@@ -24,19 +24,19 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   const {
     state: { stepNumber, subscriptionState },
     setSubcriptionState,
-    setFormStepNumber,
+    setCurrentStepNumber,
   } = useSubscription();
 
   const onComplete = () => {
-    setFormStepNumber(5);
+    setCurrentStepNumber(5);
     setSubcriptionState('complete');
   };
 
   let classes = '';
-  if (variant === 'nav_btn') classes = styles.nav__btn;
-  if (variant === 'next_btn') classes = styles.next__btn;
-  if (variant === 'prev_btn') classes = styles.prev__btn;
-  if (variant === 'confirm_btn') classes = styles.confirm__btn;
+  if (variants === 'nav_btn') classes = styles.nav__btn;
+  if (variants === 'next_btn') classes = styles.next__btn;
+  if (variants === 'prev_btn') classes = styles.prev__btn;
+  if (variants === 'confirm_btn') classes = styles.confirm__btn;
 
   let navBtnTitle = '';
   if (id === 'userInputs') navBtnTitle = 'Step 1 personal info';
@@ -61,16 +61,16 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   if (stepNumber === 4) prevBtnTitle = 'back to addons';
 
   let title = '';
-  if (variant === 'nav_btn') title = navBtnTitle;
-  if (variant === 'prev_btn') title = prevBtnTitle;
-  if (variant === 'next_btn' || variant === 'confirm_btn') title = nextBtnTitle;
+  if (variants === 'nav_btn') title = navBtnTitle;
+  if (variants === 'prev_btn') title = prevBtnTitle;
+  if (variants === 'next_btn' || variants === 'confirm_btn') title = nextBtnTitle;
 
   return (
     <button
       title={title}
       aria-pressed={pressed}
       disabled={disabled || subscriptionState === 'complete'}
-      onClick={variant === 'confirm_btn' ? onComplete : onClick}
+      onClick={variants === 'confirm_btn' ? onComplete : onClick}
       className={`${styles.button} ${classes}`}>
       {children}
     </button>

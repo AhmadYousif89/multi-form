@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { Card, PlanSwitcher, Plans } from '../ui';
 import { useSubscription } from '../../context/subscription';
 
@@ -8,7 +6,7 @@ import proIcon from '../../assets/icons/icon-pro.svg';
 import arcadeIcon from '../../assets/icons/icon-arcade.svg';
 import advancedIcon from '../../assets/icons/icon-advanced.svg';
 
-export const SelectPlan: FC = () => {
+export const SelectPlan = () => {
   const {
     state: { billing },
   } = useSubscription();

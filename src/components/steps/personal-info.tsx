@@ -1,10 +1,7 @@
-import { FC } from 'react';
-
 import { Card, Input } from '../ui';
-
 import styles from './styles/personal-info.module.css';
 
-export const PersonalInfo: FC = () => {
+export const PersonalInfo = () => {
   return (
     <Card>
       <section className={'general__container'}>

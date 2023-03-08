@@ -45,7 +45,7 @@ const initContextState: UseSubscriptionContext = {
   setBillingPlan: () => {},
   billingSwitcher: () => {},
   setSelectedPlan: () => {},
-  setFormStepNumber: () => {},
+  setCurrentStepNumber: () => {},
   resetSubscription: () => {},
   setSubcriptionState: () => {},
 };
@@ -69,37 +69,51 @@ const useSubscriptionContext = (initState: InitState) => {
   const [userInputs, setUserInputs] = useState(initState.userInputs);
   const [subscriptionState, setsubscriptionState] = useState(initState.subscriptionState);
 
+  /* Set the subscription state to "active" | "complete" */
   const setSubcriptionState = useCallback(
     (subscriptionState: SetStateAction<SubscriptionState>) =>
       setsubscriptionState(subscriptionState),
     [],
   );
 
+  /* Set the billing cycle state to "monthly" | "yearly" */
   const setBillingPlan = useCallback(
     (billing: SetStateAction<Billing>) => setBilling(billing),
     [],
   );
 
-  const setFormStepNumber = useCallback(
+  /* Manage the application current step number  */
+  const setCurrentStepNumber = useCallback(
     (step: SetStateAction<number>) => setStepNumber(step),
     [],
   );
 
+  /* Manage the user form state in 1st step */
   const setUserValues = useCallback(
     (userInputs: SetStateAction<UserInputs>) => setUserInputs(userInputs),
     [],
   );
 
+  /* Manage the selected plan in step 2 */
   const setSelectedPlan = useCallback(
     (plan: SetStateAction<Plan>) => setPlanInfo(plan),
     [],
   );
 
-  const setPlanAddon = useCallback(
-    (addon: SetStateAction<Addon[]>) => setAddons(addon),
-    [],
-  );
+  /* Manage the plans[] in the state */
+  const setPlanAddon = useCallback((addon: Addon | SetStateAction<Addon[]>) => {
+    if (typeof addon === 'object' && 'type' in addon && addon !== null) {
+      setAddons(prevAddons => {
+        const exAddon = prevAddons.find(a => a.type === addon.type);
+        if (exAddon) {
+          return prevAddons.filter(a => a.type !== exAddon.type);
+        }
+        return [...prevAddons, { type: addon.type, price: addon.price }];
+      });
+    } else setAddons(addon);
+  }, []);
 
+  /* Switch the billing cycle function */
   const billingSwitcher = useCallback(() => {
     let HIGHEST_IN_MO;
     let LOWEST_IN_YR;
@@ -131,6 +145,7 @@ const useSubscriptionContext = (initState: InitState) => {
     });
   }, [billing]);
 
+  /* Reset the application state */
   const resetSubscription = useCallback(() => {
     setAddons([]);
     setStepNumber(1);
@@ -155,10 +170,11 @@ const useSubscriptionContext = (initState: InitState) => {
     setBillingPlan,
     billingSwitcher,
     setSelectedPlan,
-    setFormStepNumber,
+    setCurrentStepNumber,
     resetSubscription,
     setSubcriptionState,
   };
 };
 
+/* Custom hook to extract the global state and set functions to the rest of the application components */
 export const useSubscription = () => useContext(UIContext);

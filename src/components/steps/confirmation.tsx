@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
 import { Card } from '../ui';
 import { useSubscription } from '../../context/subscription';
 import confirmIcon from '../../assets/icons/icon-thank-you.svg';
 import styles from './styles/confirmation.module.css';
 
-export const Confirmation: FC = () => {
+export const Confirmation = () => {
   const { resetSubscription } = useSubscription();
 
   return (

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { PlanTypes, useSubscription } from '../../context/subscription';
-
 import styles from './styles/plan.module.css';
 
 type PlanPrices = '9' | '12' | '15' | '90' | '120' | '150';
@@ -28,6 +27,7 @@ export const Plans: FC<PlanProps> = ({ plan, price, icon }) => {
       }>
       <figure>
         <img src={icon} alt={`${plan} plan icon`} />
+        <figcaption className="sr-only">image for the {plan} plan</figcaption>
       </figure>
 
       <div className={styles.details}>

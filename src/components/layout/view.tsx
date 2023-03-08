@@ -1,12 +1,10 @@
-import { FC } from 'react';
-
 import { TopNavigation } from './top-nav';
 import { SideNavigation } from './side-nav';
 import { DisplayStep } from './display-step';
 
 import styles from './styles/view.module.css';
 
-export const View: FC = () => {
+export const View = () => {
   return (
     <div className={styles.view__container}>
       <TopNavigation />

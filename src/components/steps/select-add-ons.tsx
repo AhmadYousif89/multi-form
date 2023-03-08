@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
 import { Card, Addon } from '../ui';
 import { useSubscription } from '../../context/subscription';
 
 import styles from './styles/select-add-ons.module.css';
 
-export const SelectAddons: FC = () => {
+export const SelectAddons = () => {
   const {
     state: { billing },
   } = useSubscription();

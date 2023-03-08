@@ -16,19 +16,11 @@ export const Addon: FC<AddonProps> = ({ addon, price, description }) => {
     setPlanAddon,
   } = useSubscription();
 
-  const selectAddon = () =>
-    setPlanAddon(prevAddons => {
-      const exAddon = prevAddons.find(a => a.type === addon);
-      if (exAddon) {
-        return prevAddons.filter(a => a.type !== exAddon.type);
-      }
-      return [...prevAddons, { type: addon, price: +price }];
-    });
   const addonIsSelected = addons.some(a => a.type === addon);
 
   return (
     <li
-      onClick={selectAddon}
+      onClick={() => setPlanAddon({ type: addon, price: +price })}
       className={styles.container}
       aria-selected={addonIsSelected}>
       <input
