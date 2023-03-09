@@ -25,7 +25,7 @@
 }
 
 body {
-  margin: 0;
+  box-sizing: border-box;
   background-color: var(--Magnolia);
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
@@ -84,7 +84,7 @@ input[type='number'] {
 
 @media screen and (width > 431px) {
   .main {
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
